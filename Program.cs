@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace isim_uzayı
 
@@ -21,7 +21,7 @@ namespace isim_uzayı
         {
             Random rand = new Random();  // I've created an object from random class. I used the Random class' constructor.
             RandomNumber = rand.Next(1, 11);
-            
+
         }
 
         static void AskForAGuess()
@@ -32,7 +32,7 @@ namespace isim_uzayı
             {
                 try
                 {
-                    ValidAnswer = true;   
+                    ValidAnswer = true;
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\tMake your guess!");
                     Console.ResetColor();
@@ -45,7 +45,7 @@ namespace isim_uzayı
                     Console.WriteLine($"\n\t{e.Message}");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.ResetColor();
-                    ValidAnswer = false;    
+                    ValidAnswer = false;
 
                 }
 
@@ -55,22 +55,37 @@ namespace isim_uzayı
 
         static void ShowResult()
         {
-            if(UserGuess == RandomNumber)
+            if (UserGuess == RandomNumber)
             {
-                Console.WriteLine($"\n\tYes the number in my mind was: {RandomNumber}. You WON!");
-            } else
+                Console.WriteLine($"\n\tYes the number in my mind was: {RandomNumber}.");
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n\t YOU WON!");
+                Console.ResetColor();
+            }
+            else
             {
                 Console.WriteLine($"\n\tThe number in my mind was: {RandomNumber}. Maybe next time.");
-                
+
             }
         }
 
         static void PlayAgain()
         {
-            Console.WriteLine("\n\tWould you like to play again? Type Y for yes and N for no.");
-            YesOrNo = Console.ReadLine();
-            YesOrNo = YesOrNo.ToUpper();
-            
+            while (YesOrNo != "Y" || YesOrNo != "N")
+            {
+                
+                    Console.WriteLine("\n\tWould you like to play again? Type Y for yes and N for no.");
+                    YesOrNo = Console.ReadLine();
+                    YesOrNo = YesOrNo.ToUpper();
+                    
+                if(YesOrNo != "Y" || YesOrNo != "N")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\n\tYou entered: {0}",YesOrNo);
+                    Console.WriteLine("\tYou should enter Y or N.");
+                    Console.ResetColor();   
+                }
+            }
         }
 
         static void ProgramEnded()
@@ -80,14 +95,14 @@ namespace isim_uzayı
             Console.WriteLine("\n\tPROGRAM ENDED");
             Console.ResetColor();
         }
-    
+
         class Program
         {
             static void Main(string[] args)
             {
-                while(YesOrNo == "Y")
+                while (YesOrNo == "Y")
                 {
-                    if(count == 0)
+                    if (count == 0)
                     {
                         WelcomeMessage();
                     }
@@ -99,8 +114,8 @@ namespace isim_uzayı
                 }
 
                 ProgramEnded();
-               
+
             }
         }
-     }
+    }
 }
